@@ -8,16 +8,18 @@ Base.metadata.create_all(engine)
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-def create_card(color,num,fill, shape,photo):
+def create_card(color,num,fill,shape,photo):
     card_object = Card(color=color,num=num,fill = fill,shape = shape, photo = photo)
     session.add(card_object)
     session.commit()
 
 def get_card_by_id(id):
-    card = session.query(Card).filter_by(
-      id=id).first()
-    return card
+    card1 = session.query(Card).filter_by(id=id).first()
+    return card1
 
+def get_all_cards():
+    cards = session.query(Card).all()
+    return cards
 
 def check_set(card1, card2, card3):
 	Set = False
