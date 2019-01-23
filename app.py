@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask import render_template
-from database import create_card, get_card_by_id, check_set, get_all_cards
+from database import create_card, get_card_by_id, check_set, get_all_cards, create_board_card, get_board_card_by_id, delete_board
 import random
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'YOUR-VERY-SECRET-SHHH'
@@ -12,18 +12,34 @@ def home():
 
 @app.route('/set/board', methods=['GET', 'POST'])
 def set_board():
-    sets = []
-    for i in range (13):
-        x = random.randint(1, 82)
-        sets.append(get_card_by_id(x))
+
+
     if request.method == 'GET':
-        return render_template("board.html", Set = 	False, first_run = True,sets = sets)
+    	delete_board()
+        sets = []
+        for i in range (13):
+            already = True
+            x = random.randint(1, 82)
+            while already==True:
+                already = False
+                x = random.randint(1, 82)
+                a = get_card_by_id(x)
+                for y in range (len(sets)):
+                    if (a == sets[y]):
+                        already = True
+            sets.append(get_card_by_id(x))
+            create_board_card(a.color,a.num,a.fill,a.shape,a.photo)
+        return render_template("board.html", Set = "No set", first_run = True,sets = sets)
     else:
-        card1 = request.form['line1']
-        card2 = request.form['line2']
-        card3 = request.form['line3']
+    	sets = []
+    	for i in range (13):
+    		sets.append(get_board_card_by_id(i+1))
+        card1 = sets[int(request.form.getlist("cards") [0])]
+        card2 = sets[int(request.form.getlist("cards") [1])]
+        card3 = sets[int(request.form.getlist("cards") [2])]
+        
         Set = check_set(card1,card2,card3)
-        return render_template('home.html',Set = Set, first_run = False, sets = sets)
+       	return render_template('board.html',Set = Set, first_run = False, sets = sets)
 
 
 @app.route('/dont_go_here')

@@ -1,33 +1,135 @@
 <html>
   <head>
+  	<style>
+  	#im1{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[1].photo}});
+    	background-repeat: no-repeat;
+	}
+  	#im2{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[2].photo}});
+    	background-repeat: no-repeat;
+	}
+	#im3{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[3].photo}});
+    	background-repeat: no-repeat;
+	}  	
+	#im4{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[4].photo}});
+    	background-repeat: no-repeat;
+	}  	
+	#im5{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[5].photo}});
+    	background-repeat: no-repeat;
+	}
+	#im6{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[6].photo}});
+    	background-repeat: no-repeat;
+	}
+	#im7{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[7].photo}});
+    	background-repeat: no-repeat;
+	}
+	#im8{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[8].photo}});
+    	background-repeat: no-repeat;
+	}
+	#im9{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[9].photo}});
+    	background-repeat: no-repeat;
+	}
+	#im10{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[10].photo}});
+    	background-repeat: no-repeat;
+	}
+	#im11{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[11].photo}});
+    	background-repeat: no-repeat;
+	}
+	#im12{
+    	width: 250px;
+    	height: 150px;
+    	background-image: url({{sets[12].photo}});
+    	background-repeat: no-repeat;
+	}
+  	</style>
+
+  </head>
   <title>SET game-board</title>
   </nav>
 
   <h1>lets play set!</h1>
   <h2>this is the board:</h2> 
   {% if first_run!=True %}
-    {% if Set!=True %}
-    	<h2>Sorry.. it's not a set, try again!</h2>
-    {% else %}
-    	<h2>nice!! it's a set!</h2>
-    {% endif %}
+  <h2>set? {{Set}}</h2>
   {% endif %}
+  <br>
   <form action="/set/board" method="POST">
 
-    <input type="checkbox" name="card1" value="card1"><img src="{{sets[1].photo}}" height="100" width="200">
-    <input type="checkbox" name="card2" value="card1"><img src="{{sets[2].photo}}" height="100" width="200">
-    <input type="checkbox" name="card3" value="card1"><img src="{{sets[3].photo}}" height="100" width="200">
-    <input type="checkbox" name="card4" value="card1"><img src="{{sets[4].photo}}" height="100" width="200"><br>
-    <input type="checkbox" name="card5" value="card1"><img src="{{sets[5].photo}}" height="100" width="200">
-    <input type="checkbox" name="card6" value="card1"><img src="{{sets[6].photo}}" height="100" width="200">
-    <input type="checkbox" name="card7" value="card1"><img src="{{sets[7].photo}}" height="100" width="200">
-    <input type="checkbox" name="card8" value="card1"><img src="{{sets[8].photo}}" height="100" width="200"><br>
-    <input type="checkbox" name="card9" value="card1"><img src="{{sets[9].photo}}" height="100" width="200">
-    <input type="checkbox" name="card10" value="card1"><img src="{{sets[10].photo}}" height="100" width="200">
-    <input type="checkbox" name="card11" value="card1"><img src="{{sets[11].photo}}" height="100" width="200">
-    <input type="checkbox" name="card12" value="card1"><img src="{{sets[12].photo}}" height="100" width="200"><br>
+    <input type="checkbox" name="cards" value="1"> <img src="{{sets[1].photo}}" height="100" width="200">
+    <input type="checkbox" name="cards" value="2"> <img src="{{sets[2].photo}}" height="100" width="200">
+    <input type="checkbox" name="cards" value="3"> <img src="{{sets[3].photo}}" height="100" width="200">
+    <input type="checkbox" name="cards" value="4"> <img src="{{sets[4].photo}}" height="100" width="200"><br>
+    <input type="checkbox" name="cards" value="5"> <img src="{{sets[5].photo}}" height="100" width="200">
+    <input type="checkbox" name="cards" value="6"> <img src="{{sets[6].photo}}" height="100" width="200">
+    <input type="checkbox" name="cards" value="7"> <img src="{{sets[7].photo}}" height="100" width="200">
+    <input type="checkbox" name="cards" value="8"> <img src="{{sets[8].photo}}" height="100" width="200"><br>
+    <input type="checkbox" name="cards" value="9"> <img src="{{sets[9].photo}}" height="100" width="200">
+    <input type="checkbox" name="cards" value="10"> <img src="{{sets[10].photo}}" height="100" width="200">
+    <input type="checkbox" name="cards" value="11"> <img src="{{sets[11].photo}}" height="100" width="200">
+    <input type="checkbox" name="cards" value="12"> <img src="{{sets[12].photo}}" height="100" width="200"><br>
+    <input type="submit" value="Think those three are a set? click here!">
 
-    <input type="submit" value="think those three are a set? click here">
+
+
+    <!--	<input type="image" src="{{sets[1].photo}}" height="100" width="200" />
+	<input type="image" src="{{sets[2].photo}}" height="100" width="200" />
+	<input type="image" src="{{sets[3].photo}}" height="100" width="200" />
+	<input type="image" src="{{sets[4].photo}}" height="100" width="200" /><br>
+    <input type="image" src="{{sets[5].photo}}" height="100" width="200" />
+    <input type="image" src="{{sets[6].photo}}" height="100" width="200" />
+	<input type="image" src="{{sets[7].photo}}" height="100" width="200" />
+	<input type="image" src="{{sets[8].photo}}" height="100" width="200" /><br>
+	<input type="image" src="{{sets[9].photo}}" height="100" width="200" />
+	<input type="image" src="{{sets[10].photo}}" height="100" width="200" />
+	<input type="image" src="{{sets[11].photo}}" height="100" width="200" />
+	<input type="image" src="{{sets[12].photo}}" height="100" width="200" /><br>   
+
+
+
+    <input id=im1 type="button" onclick="" value="">
+    <input id=im2 type="button" onclick="" value="">
+    <input id=im3 type="button" onclick="" value="">
+    <input id=im4 type="button" onclick="" value=""><br>
+    <input id=im5 type="button" onclick="" value="">
+    <input id=im6 type="button" onclick="" value="">
+    <input id=im7 type="button" onclick="" value="">
+    <input id=im8 type="button" onclick="" value=""><br>
+    <input id=im9 type="button" onclick="" value="">
+    <input id=im10 type="button" onclick="" value="">
+    <input id=im11 type="button" onclick="" value="">
+    <input id=im12 type="button" onclick="" value=""><br>-->
   </form>
 </body>
 </html>

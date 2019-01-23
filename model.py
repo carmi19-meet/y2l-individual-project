@@ -14,3 +14,12 @@ class Card(Base):
     fill = Column(String) # line, full or empty
     shape = Column(String) # snake, diamond or a ellipse 
     photo = Column(String) # the photo of the card
+
+class Board(Base):
+    __tablename__ = "board_cards"
+    id = Column(Integer, primary_key=True)
+    color = Column(String) # green, red or purple
+    num = Column(Integer) # 1,2 or 3
+    fill = Column(String) # line, full or empty
+    shape = Column(String) # snake, diamond or a ellipse 
+    photo = Column(String) # the photo of the card
