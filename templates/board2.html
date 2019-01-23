@@ -77,45 +77,15 @@
 
   </head>
   <title>SET game-board</title>
-  
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
-<body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/">SET - the game</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">play <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="/set/board/1">play aginst the clock</a></li>
-          <li><a href="#">game mod2</a></li>
-          <li><a href="#">game mod3</a></li>
-        </ul>
-      </li>
-      <li><a href="/about">about SET</a></li>
-      <li><a href="#">where to buy SET</a></li>
-    </ul>
-  </div>
-</nav>
-
   </nav>
 
   <h1>lets play set!</h1>
   <h2>this is the board:</h2> 
   {% if first_run!=True %}
-  <h2>nice! it's ... {{Set}}</h2>
-
+  <h2>set? {{Set}}</h2>
   {% endif %}
-  <h2>you found {{counter}} sets with those cards</h2>
   <br>
-  <form action="/set/board/1" method="POST">
+  <form action="/set/board/2" method="POST">
 
     <input type="checkbox" name="cards" value="1"> <img src="{{sets[1].photo}}" height="100" width="200">
     <input type="checkbox" name="cards" value="2"> <img src="{{sets[2].photo}}" height="100" width="200">
