@@ -1,13 +1,18 @@
 from flask import Flask, request
 from flask import render_template
-from database import create_card, get_card_by_id, check_set, get_all_cards, create_board_card, get_board_card_by_id, delete_board, create_counter, add_set, get_count_by_id
+from database import create_card, get_card_by_id, check_set, get_all_cards, create_board_card, get_board_card_by_id, delete_board, create_counter, add_set, get_count_by_id, delete_counter
 import random
+import time
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'YOUR-VERY-SECRET-SHHH'
 
 @app.route('/')
 def home():
 	return render_template("home.html")
+
+@app.route('/rules')
+def learn_to_play():
+	return render_template("rules.html")
 	
 @app.route('/about')
 def about_set():
@@ -16,8 +21,9 @@ def about_set():
 @app.route('/set/board/1', methods=['GET', 'POST'])
 def set_board():
 
-
     if request.method == 'GET':
+    	delete_board()
+    	delete_counter()
     	create_counter(0)
     	counter = get_count_by_id(1)
     	delete_board()
@@ -49,6 +55,51 @@ def set_board():
         	add_set(1)
        	return render_template('board.html',Set = Set, first_run = False, sets = sets,counter = counter)
 
+
+@app.route('/set/board/2', methods=['GET', 'POST'])
+def set_board2():
+
+    if request.method == 'GET':
+    	delete_board()
+        sets = []
+        for i in range (13):
+            already = True
+            x = random.randint(1, 82)
+            while already==True:
+                already = False
+                x = random.randint(1, 82)
+                a = get_card_by_id(x)
+                for y in range (len(sets)):
+                    if (a == sets[y]):
+                        already = True
+            sets.append(get_card_by_id(x))
+            create_board_card(a.color,a.num,a.fill,a.shape,a.photo)
+        return render_template("board2.html", Set = "No set", first_run = True,sets = sets)
+    else:
+    	sets = []
+    	for i in range (13):
+    		sets.append(get_board_card_by_id(i+1))
+
+        card1 = sets[int(request.form.getlist("cards") [0])]
+        card2 = sets[int(request.form.getlist("cards") [1])]
+        card3 = sets[int(request.form.getlist("cards") [2])]
+        Set = check_set(card1,card2,card3)
+
+        sets = []
+    	for i in range (13):
+            already = True
+            x = random.randint(1, 82)
+            a = get_card_by_id(x)
+            while already==True:
+                already = False
+                x = random.randint(1, 82)           
+                a = get_card_by_id(x)
+                for y in range (len(sets)):
+                    if (a == sets[y]):
+                        already = True
+            sets.append(get_card_by_id(x))
+            create_board_card(a.color,a.num,a.fill,a.shape,a.photo)
+       	return render_template('board2.html',Set = Set, first_run = False, sets = sets)
 
 @app.route('/dont_go_here')
 def cards_creator():

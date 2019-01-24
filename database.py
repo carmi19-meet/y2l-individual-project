@@ -36,6 +36,9 @@ def get_count_by_id(id):
     c1 = session.query(Count).filter_by(id=id).first()
     return c1
 
+def delete_counter():
+  session.query(Count).delete()
+  session.commit()
 
 def get_board_card_by_id(id):
     card1 = session.query(Board).filter_by(id=id).first()
