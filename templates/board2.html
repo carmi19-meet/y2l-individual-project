@@ -2,78 +2,66 @@
   <head>
   <link rel="stylesheet" type="text/css" href="/static/mystyle.css">
   	<style>
-  	#im1{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[1].photo}});
-    	background-repeat: no-repeat;
-	}
-  	#im2{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[2].photo}});
-    	background-repeat: no-repeat;
-	}
-	#im3{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[3].photo}});
-    	background-repeat: no-repeat;
-	}  	
-	#im4{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[4].photo}});
-    	background-repeat: no-repeat;
-	}  	
-	#im5{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[5].photo}});
-    	background-repeat: no-repeat;
-	}
-	#im6{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[6].photo}});
-    	background-repeat: no-repeat;
-	}
-	#im7{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[7].photo}});
-    	background-repeat: no-repeat;
-	}
-	#im8{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[8].photo}});
-    	background-repeat: no-repeat;
-	}
-	#im9{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[9].photo}});
-    	background-repeat: no-repeat;
-	}
-	#im10{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[10].photo}});
-    	background-repeat: no-repeat;
-	}
-	#im11{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[11].photo}});
-    	background-repeat: no-repeat;
-	}
-	#im12{
-    	width: 250px;
-    	height: 150px;
-    	background-image: url({{sets[12].photo}});
-    	background-repeat: no-repeat;
-	}
+
+input[type="checkbox"][id^="cb"] {
+  display: none;
+}
+
+label {
+  border: 1px solid #fff;
+  padding: 10px;
+  display: block;
+  position: relative;
+  margin: 10px;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+label::before {
+  background-color: white;
+  color: white;
+  content: " ";
+  display: block;
+  border-radius: 50%;
+  border: 1px solid grey;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 28px;
+  transition-duration: 0.4s;
+  transform: scale(0);
+}
+
+label img {
+  height: 120px;
+  width: 220px;
+  transition-duration: 0.2s;
+  transform-origin: 50% 50%;
+}
+
+:checked+label {
+  border-color: #ddd;
+}
+
+:checked+label::before {
+  content: "✓";
+  background-color: grey;
+  transform: scale(1);
+}
+
+:checked+label img {
+  transform: scale(0.9);
+  box-shadow: 0 0 5px #333;
+  z-index: -1;
+}
   	</style>
 
   </head>
@@ -85,7 +73,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body background="/static/bg.png">
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -107,7 +95,6 @@
 
   </nav>
 
-  <h1>lets play set!</h1>
   <h2>this is the board:</h2> 
   <h2>here, after each try, the board will change</h2>
   {% if first_run!=True %}
@@ -116,20 +103,34 @@
   {% endif %}
   <form action="/set/board/2" method="POST">
 
-    <input type="checkbox" name="cards" value="1"> <img src="{{sets[1].photo}}" height="100" width="200">
-    <input type="checkbox" name="cards" value="2"> <img src="{{sets[2].photo}}" height="100" width="200">
-    <input type="checkbox" name="cards" value="3"> <img src="{{sets[3].photo}}" height="100" width="200">
-    <input type="checkbox" name="cards" value="4"> <img src="{{sets[4].photo}}" height="100" width="200"><br>
-    <input type="checkbox" name="cards" value="5"> <img src="{{sets[5].photo}}" height="100" width="200">
-    <input type="checkbox" name="cards" value="6"> <img src="{{sets[6].photo}}" height="100" width="200">
-    <input type="checkbox" name="cards" value="7"> <img src="{{sets[7].photo}}" height="100" width="200">
-    <input type="checkbox" name="cards" value="8"> <img src="{{sets[8].photo}}" height="100" width="200"><br>
-    <input type="checkbox" name="cards" value="9"> <img src="{{sets[9].photo}}" height="100" width="200">
-    <input type="checkbox" name="cards" value="10"> <img src="{{sets[10].photo}}" height="100" width="200">
-    <input type="checkbox" name="cards" value="11"> <img src="{{sets[11].photo}}" height="100" width="200">
-    <input type="checkbox" name="cards" value="12"> <img src="{{sets[12].photo}}" height="100" width="200"><br>
-    <input type="submit" value="Think those three are a set? click here!">
+    <input id = "cb1" type="checkbox" name="cards" value="1">
+    <label for="cb1"><img src="{{sets[1].photo}}"/></label>
+    <input id = "cb2" type="checkbox" name="cards" value="2">
+    <label for="cb2"><img src="{{sets[2].photo}}"/></label>
+    <input id = "cb3" type="checkbox" name="cards" value="3">
+    <label for="cb3"><img src="{{sets[3].photo}}"/></label>
+    <input id = "cb4" type="checkbox" name="cards" value="4">
+    <label for="cb4"><img src="{{sets[4].photo}}"/></label> <br>
+    <input id = "cb5" type="checkbox" name="cards" value="5"> 
+    <label for="cb5"><img src="{{sets[5].photo}}"/></label> 
+    <input id = "cb6" type="checkbox" name="cards" value="6">
+    <label for="cb6"><img src="{{sets[6].photo}}"/></label>
+    <input id = "cb7" type="checkbox" name="cards" value="7">
+    <label for="cb7"><img src="{{sets[7].photo}}"/></label>
+    <input id = "cb8" type="checkbox" name="cards" value="8">
+    <label for="cb8"><img src="{{sets[8].photo}}"/></label> <br>
+    <input id = "cb9" type="checkbox" name="cards" value="9"> 
+    <label for="cb9"><img src="{{sets[9].photo}}"/></label> 
+    <input id = "cb10" type="checkbox" name="cards" value="10">
+    <label for="cb10"><img src="{{sets[10].photo}}"/></label>    
+    <input id = "cb11" type="checkbox" name="cards" value="11">
+    <label for="cb11"><img src="{{sets[11].photo}}"/></label>    
+    <input id = "cb12" type="checkbox" name="cards" value="12">
+    <label for="cb12"><img src="{{sets[12].photo}}"/></label>    
+    <br>
+    <input class = "link" type="submit" value="Think those three are a set? click here!">
   </form>
-    <a href="/set/board/2">can't find a SET? restart here</a>
+
+    <a class = "link" href="/set/board/2">can't find a SET? deal again here</a>
 </body>
 </html>
