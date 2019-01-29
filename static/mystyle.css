@@ -1,16 +1,17 @@
-h1{ color: #111;
- font-family: 'Helvetica Neue', sans-serif; 
- font-size: 275px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center; }
+h1{ color: #111 !important;
+ font-family: 'Open Sans', sans-serif !important;
+ font-size: 50px !important;
+ font-weight: bold !important;
+ letter-spacing: -1px !important;
+ line-height: 1 !important;
+ text-align: center; }
 
 
-h2{ color: #111; font-family: 'Open Sans', sans-serif; font-size: 20px; font-weight: 300; line-height: 32px; margin: 0 0 72px; text-align: center; }
+h2{ color: #111 !important; font-family: 'Open Sans' !important, sans-serif; font-size: 25px !important; font-weight: 300 !important; line-height: 32px !important; margin: 0 0 72px !important; text-align: center; }
 
 
-p{ color: #685206; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; line-height: 24px; margin: 0 0 24px; text-align: justify; text-justify: inter-word; }
+p{ color: #685206 !important; font-family: 'Helvetica Neue' !important, sans-serif; font-size: 14px; line-height: 24px; margin: 0 0 24px; text-align: justify; text-justify: inter-word; }
 
-.centerd_board{
-	
-}
 body {
     text-align: center;
 }
@@ -31,4 +32,7 @@ form {
 .link:hover, .link:active {
   background-color: green;
   color: white;
+}
+#home{
+	background-image: url("bg5.png");
 }
