@@ -27,6 +27,8 @@ def set_board():
     	create_counter(0)
     	counter = get_count_by_id(1)
     	delete_board()
+    	x = random.randint(1, 82)
+        a = get_card_by_id(x)
         sets = []
         for i in range (13):
             already = True
@@ -83,12 +85,14 @@ def set_board2():
     	for i in range (13):
     		sets.append(get_board_card_by_id(i+1))
     	if (len(request.form.getlist("cards")) >=3):
-	        card1 = sets[int(request.form.getlist("cards") [0])]
-	        card2 = sets[int(request.form.getlist("cards") [1])]
-	        card3 = sets[int(request.form.getlist("cards") [2])]
-	        Set = check_set(card1,card2,card3)
+        	card1 = sets[int(request.form.getlist("cards") [0])]
+        	card2 = sets[int(request.form.getlist("cards") [1])]
+        	card3 = sets[int(request.form.getlist("cards") [2])]
+        	Set = check_set(card1,card2,card3)
 
         sets = []
+        x = random.randint(1, 82)
+        a = get_card_by_id(x)
     	for i in range (13):
             already = True
             x = random.randint(1, 82)

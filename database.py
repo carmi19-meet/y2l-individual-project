@@ -54,7 +54,7 @@ def delete_board():
 
 def check_set(card1, card2, card3):
 	Set = "not a set :("
-	if((card1.fill != card2.fill and card2.fill !=card3.fill and card1.fill != card3.fill) or (card1.fill == card2.fill and card2.fill ==card3.fill)):	
+	if((((card1.fill) != (card2.fill)) and ((card2.fill) !=(card3.fill)) and ((card1.fill) != (card3.fill))) or (card1.fill == card2.fill and card2.fill ==card3.fill)):	
 		Set = "not a set :("
 		if((card1.num != card2.num and card2.num !=card3.num and card1.num != card3.num) or (card1.num == card2.num and card2.num ==card3.num)):	
 			Set = "not a set :("		
