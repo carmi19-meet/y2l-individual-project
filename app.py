@@ -64,7 +64,7 @@ def set_board():
 def set_board2():
 
     if request.method == 'GET':
-    	delete_board()
+        delete_board()
         sets = []
         for i in range (13):
             already = True
@@ -80,20 +80,20 @@ def set_board2():
             create_board_card(a.color,a.num,a.fill,a.shape,a.photo)
         return render_template("board2.html", Set = "No set", first_run = True,sets = sets)
     else:
-    	Set = "not a set, pick only three cards..."
-    	sets = []
-    	for i in range (13):
-    		sets.append(get_board_card_by_id(i+1))
-    	if (len(request.form.getlist("cards")) >=3):
-        	card1 = sets[int(request.form.getlist("cards") [0])]
-        	card2 = sets[int(request.form.getlist("cards") [1])]
-        	card3 = sets[int(request.form.getlist("cards") [2])]
-        	Set = check_set(card1,card2,card3)
+        Set = "not a set, pick only three cards..."
+        sets = []
+        for i in range (13):
+            sets.append(get_board_card_by_id(i+1))
+        if (len(request.form.getlist("cards")) >=3):
+            card1 = sets[int(request.form.getlist("cards") [0])]
+            card2 = sets[int(request.form.getlist("cards") [1])]
+            card3 = sets[int(request.form.getlist("cards") [2])]
+            Set = check_set(card1,card2,card3)
 
         sets = []
         x = random.randint(1, 82)
         a = get_card_by_id(x)
-    	for i in range (13):
+        for i in range (13):
             already = True
             x = random.randint(1, 82)
             a = get_card_by_id(x)
