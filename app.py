@@ -22,12 +22,12 @@ def about_set():
 def set_board():
 
     if request.method == 'GET':
-    	delete_board()
-    	delete_counter()
-    	create_counter(0)
-    	counter = get_count_by_id(1)
-    	delete_board()
-    	x = random.randint(1, 82)
+        delete_board()
+        delete_counter()
+        create_counter(0)
+        counter = get_count_by_id(1)
+        delete_board()
+        x = random.randint(1, 82)
         a = get_card_by_id(x)
         sets = []
         for i in range (13):
